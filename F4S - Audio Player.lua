@@ -14,7 +14,7 @@ writefile("meow.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/ref
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 	Title = "Load";
 	Text = "Audio Player";
-	Icon = getcustomasset("meow.png")})
+	Icon = ""})
 Duration = 15;
 
 -- Add icons
@@ -40,18 +40,18 @@ a2.Enabled = false
 
 -- ClientPlay
 
-local CMplayTab = Window:MakeTab({
-	Name = "ClientPlayer",
+local CTab = Window:MakeTab({
+	Name = "Client",
 	Icon = getcustomasset("Cookie.png"),
 	PremiumOnly = false
 })
 
-local Section = CMplayTab:AddSection({
+local Section = CTab:AddSection({
 	Name = "Play music on Client."
 })
 
-CMplayTab:AddTextbox({
-	Name = "SoundId",
+CTab:AddTextbox({
+	Name = "Sound Id",
 	Default = "",
 	TextDisappear = false,
 	Callback = function(Value1)
@@ -60,15 +60,15 @@ CMplayTab:AddTextbox({
 	end	  
 })
 
-CMplayTab:AddButton({
-	Name = "Playing",
+CTab:AddButton({
+	Name = "Play",
 	Callback = function()
       		local Playing1 = game.Workspace.SoundF4S
       Playing1:Play()
   	end    
 })
 
-CMplayTab:AddButton({
+CTab:AddButton({
 	Name = "Stop",
 	Callback = function()
       		local Stop1 = game.Workspace.SoundF4S
@@ -76,7 +76,7 @@ CMplayTab:AddButton({
   	end    
 })
 
-CMplayTab:AddToggle({
+CTab:AddToggle({
 	Name = "Looped",
 	Default = false,
 	Callback = function(Value2)
@@ -85,3 +85,22 @@ CMplayTab:AddToggle({
 	end    
 })
 
+CTab:AddTextbox({
+	Name = "Volume",
+	Default = "0.5",
+	TextDisappear = false,
+	Callback = function(Value3)
+              local Volume1 = game.Workspace.SoundF4S
+              Volume1.Volume = (Value3)
+	end	  
+})
+
+CTab:AddTextbox({
+	Name = "Play back Speed (Pitch)",
+	Default = "1",
+	TextDisappear = false,
+	Callback = function(Value4)
+              local Pitch1 = game.Workspace.SoundF4S
+              Pitch1.PlaybackSpeed = (Value4)
+	end	  
+})
