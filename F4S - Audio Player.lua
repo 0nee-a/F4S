@@ -96,7 +96,7 @@ CTab:AddTextbox({
 })
 
 CTab:AddTextbox({
-	Name = "Play back Speed (Pitch)",
+	Name = "Pitch",
 	Default = "1",
 	TextDisappear = false,
 	Callback = function(Value4)
@@ -104,3 +104,4 @@ CTab:AddTextbox({
               Pitch1.PlaybackSpeed = (Value4)
 	end	  
 })
+
