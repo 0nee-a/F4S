@@ -1,28 +1,40 @@
 -- Local
 
+local plr = game:GetService("Players").LocalPlayer
 local plrId = game:GetService("Players").LocalPlayer.UserId
 local plrName = game:GetService("Players").LocalPlayer.Name
 local plrDisplayName = game:GetService("Players").LocalPlayer.DisplayName
 local plrAccountAge = game:GetService("Players").LocalPlayer.AccountAge
-
--- Add meow =3
-
-writefile("meow.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/main/meow.png"))
+local JobId = game.JobId
+local PlaceId = game.PlaceId
 
 -- Send notification
 
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 	Title = "Load";
-	Text = "Audio Player";
+	Text = ""..PlaceId;
 	Icon = ""})
 Duration = 15;
 
 -- Add icons
 
+if makefolder and not isfolder("APlayF4SI") then
+    makefolder("APlayF4SI")
+end
+
+if not isfile("APlayF4SI/meow.png") then
+       writefile("APlayF4SI/meow.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/main/meow.png"))
+end
+
+if not isfile("APlayF4SI/Cookie.png") then
+       writefile("APlayF4SI/Cookie.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/main/Cookie.png"))
+end
+
+
 -- Thx u! <3
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "F4S - Audio Player", HidePremium = false, Intro = true, IntroText = "Have Fun!", SaveConfig = true, ConfigFolder = "APlayF4S"})
+local Window = OrionLib:MakeWindow({Name = "F4S - Audio Player", HidePremium = false, Intro = false, IntroText = "Have Fun!", SaveConfig = true, ConfigFolder = "APlayF4S"})
 
 -- Tab #
 
@@ -42,7 +54,7 @@ a2.Enabled = false
 
 local CTab = Window:MakeTab({
 	Name = "Client",
-	Icon = getcustomasset("Cookie.png"),
+	Icon = getcustomasset("APlayF4SI/Cookie.png"),
 	PremiumOnly = false
 })
 
@@ -51,7 +63,7 @@ local Section = CTab:AddSection({
 })
 
 CTab:AddTextbox({
-	Name = "Sound Id",
+	Name = "SoundId",
 	Default = "",
 	TextDisappear = false,
 	Callback = function(Value1)
@@ -104,4 +116,3 @@ CTab:AddTextbox({
               Pitch1.PlaybackSpeed = (Value4)
 	end	  
 })
-
