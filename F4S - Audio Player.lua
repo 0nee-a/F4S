@@ -12,34 +12,44 @@ local PlaceId = game.PlaceId
 
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 	Title = "Load";
-	Text = ""..PlaceId;
+	Text = ""..JobId;
 	Icon = ""})
 Duration = 15;
 
+setclipboard(JobId)
+
 -- Add icons
 
-if makefolder and not isfolder("APlayF4SI") then
-    makefolder("APlayF4SI")
+if makefolder and not isfolder("F4SIcons") then
+    makefolder("F4SIcons")
 end
 
-if not isfile("APlayF4SI/meow.png") then
-       writefile("APlayF4SI/meow.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/main/meow.png"))
+if not isfile("F4SIcons/meow.png") then
+       writefile("F4SIcons/meow.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/main/meow.png"))
 end
 
-if not isfile("APlayF4SI/Cookie.png") then
-       writefile("APlayF4SI/Cookie.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/main/Cookie.png"))
+if not isfile("F4SIcons/Cookie.png") then
+       writefile("F4SIcons/Cookie.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/main/Cookie.png"))
+end
+
+if not isfile("F4SIcons/Folder.png") then
+       writefile("F4SIcons/Folder.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/man/Folder.png"))
+end
+
+if not isfile("Wait.mp3") then
+       writefile("Wait.mp3", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/man/Wait.mp3"))
 end
 
 
 -- Thx u! <3
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "F4S - Audio Player", HidePremium = false, Intro = false, IntroText = "Have Fun!", SaveConfig = true, ConfigFolder = "APlayF4S"})
+local Window = OrionLib:MakeWindow({Name = "F4S - Audio Player", HidePremium = false, Intro = false, IntroText = "", SaveConfig = true, ConfigFolder = "APlayF4S"})
 
 -- Tab #
 
 -- Add Sounds
--- SoundT4S
+-- SoundF4S
 
 local SoundF4S = Instance.new("Sound")
 SoundF4S.Parent = game.Workspace
@@ -50,16 +60,28 @@ a1.Enabled = false
 a2 = Instance.new("CompressorSoundEffect", Workspace.SoundF4S)
 a2.Enabled = false
 
+-- Custome Sound
+
+local SoundF4SC = Instance.new("Sound")
+SoundF4SC.Parent = game.Workspace
+SoundF4SC.Name = "SoundF4SC"
+SoundF4SC.SoundId = getcustomasset("Wait.mp3")
+
+a1 = Instance.new("ChorusSoundEffect", Workspace.SoundF4SC)
+a1.Enabled = false
+a2 = Instance.new("CompressorSoundEffect", Workspace.SoundF4SC)
+a2.Enabled = false
+
 -- ClientPlay
 
 local CTab = Window:MakeTab({
 	Name = "Client",
-	Icon = getcustomasset("APlayF4SI/Cookie.png"),
+	Icon = getcustomasset("F4SIcons/Cookie.png"),
 	PremiumOnly = false
 })
 
 local Section = CTab:AddSection({
-	Name = "Play music on Client."
+	Name = "Play Audio on Client."
 })
 
 CTab:AddTextbox({
@@ -68,7 +90,7 @@ CTab:AddTextbox({
 	TextDisappear = false,
 	Callback = function(Value1)
               local SoundId1 = game.Workspace.SoundF4S
-              SoundId1.SoundId = "http://www.roblox.com/asset/?id="..Value1
+              SoundId1.SoundId = "rbxassetid://"..Value1
 	end	  
 })
 
@@ -116,3 +138,74 @@ CTab:AddTextbox({
               Pitch1.PlaybackSpeed = (Value4)
 	end	  
 })
+
+-- Customs
+
+local CustomTab = Window:MakeTab({
+	Name = "Customs",
+	Icon = getcustomasset("F4SIcons/Folder.png"),
+	PremiumOnly = false
+})
+
+CustomTab:AddParagraph("Debug","Get Audio from the exploit's Workspace. (Supports all audio formats.)")
+
+local Section = CustomTab:AddSection({
+	Name = "Play Audio on Client.Again"
+})
+
+CustomTab:AddTextbox({
+	Name = "Name",
+	Default = "Wait.mp3",
+	TextDisappear = false,
+	Callback = function(Value5)
+              local Custom1 = game.Workspace.SoundF4SC
+              Custom1.SoundId = getcustomasset(Value5)
+	end	  
+})
+
+CustomTab:AddButton({
+	Name = "Play",
+	Callback = function()
+      		local Play2 = game.Workspace.SoundF4SC
+      Play2:Play()
+  	end    
+})
+
+CustomTab:AddButton({
+	Name = "Stop",
+	Callback = function()
+      		local Stop2 = game.Workspace.SoundF4SC
+      Stop2:Stop()
+  	end    
+})
+
+CustomTab:AddToggle({
+	Name = "Looped",
+	Default = false,
+	Callback = function(Value6)
+		local Looped2 = game.Workspace.SoundF4SC
+		Looped2.Looped = (Value6)
+	end    
+})
+
+CustomTab:AddTextbox({
+	Name = "Volume",
+	Default = "0.5",
+	TextDisappear = false,
+	Callback = function(Value7)
+              local Volume1 = game.Workspace.SoundF4SC
+              Volume1.Volume = (Value7)
+	end	  
+})
+
+CustomTab:AddTextbox({
+	Name = "Pitch",
+	Default = "1",
+	TextDisappear = false,
+	Callback = function(Value8)
+              local Pitch1 = game.Workspace.SoundF4SC
+              Pitch1.PlaybackSpeed = (Value8)
+	end	  
+})
+
+OrionLib:Init()
