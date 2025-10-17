@@ -33,11 +33,11 @@ if not isfile("F4SIcons/Cookie.png") then
 end
 
 if not isfile("F4SIcons/Folder.png") then
-       writefile("F4SIcons/Folder.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/man/Folder.png"))
+       writefile("F4SIcons/Folder.png", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/main/Folder.png"))
 end
 
 if not isfile("Wait.mp3") then
-       writefile("Wait.mp3", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/man/Wait.mp3"))
+       writefile("Wait.mp3", game:HttpGet("https://github.com/0nee-a/Musicmodel/raw/refs/heads/main/Wait.mp3"))
 end
 
 
@@ -209,3 +209,4 @@ CustomTab:AddTextbox({
 })
 
 OrionLib:Init()
+
