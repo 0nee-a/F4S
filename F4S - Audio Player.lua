@@ -208,4 +208,52 @@ CustomTab:AddTextbox({
 	end	  
 })
 
+-- Toggle
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ToggleF4S"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+
+local Toggle = Instance.new("TextButton")
+Toggle.Name = "Toggle"
+Toggle.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui").ToggleF4S
+Toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Toggle.BackgroundTransparency = 0.5
+Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
+Toggle.Size = UDim2.new(0, 50, 0, 50)
+Toggle.Font = Enum.Font.SourceSans
+Toggle.Text = "Close"
+Toggle.TextColor3 = Color3.fromRGB(248, 248, 248)
+Toggle.TextSize = 18.000
+Toggle.Style = "RobloxButton"
+Toggle.Draggable = true
+
+local isOn = false
+
+local function onButtonClicked()
+    if gethui():FindFirstChild("Orion") then
+        gethui().Orion.Enabled = not gethui().Orion.Enabled
+    end
+end
+
+local function offButtonClicked()
+    if gethui():FindFirstChild("Orion") then
+        gethui().Orion.Enabled = not gethui().Orion.Enabled
+    end
+end
+
+Toggle.MouseButton1Click:Connect(function()
+    isOn = not isOn
+    if isOn then
+        Toggle.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        Toggle.Text = "Open"
+        onButtonClicked()
+    else
+        Toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        Toggle.Text = "Close"
+        offButtonClicked()
+    end
+end)
+
 OrionLib:Init()
