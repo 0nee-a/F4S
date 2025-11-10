@@ -44,7 +44,7 @@ end
 -- Thx u! <3
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "F4S - Audio Player", HidePremium = false, Intro = false, IntroText = "", SaveConfig = true, ConfigFolder = "APlayF4S"})
+local Window = OrionLib:MakeWindow({Name = "F4S - Audio Player", HidePremium = false, IntroEnabled = false, IntroText = "Hm", SaveConfig = true, ConfigFolder = "APlayF4S"})
 
 -- Tab #
 
@@ -98,7 +98,7 @@ CTab:AddButton({
 	Name = "Play",
 	Callback = function()
       		local Playing1 = game.Workspace.SoundF4S
-      Playing1:Play()
+      Playing1.Playing = true
   	end    
 })
 
@@ -106,7 +106,7 @@ CTab:AddButton({
 	Name = "Stop",
 	Callback = function()
       		local Stop1 = game.Workspace.SoundF4S
-      Stop1:Stop()
+      Stop1.Playing = false
   	end    
 })
 
@@ -139,6 +139,24 @@ CTab:AddTextbox({
 	end	  
 })
 
+CTab:AddTextbox({
+	Name = "Time Position",
+	Default = "0",
+	TextDisappear = false,
+	Callback = function(Value9)
+              local TimeP1 = game.Workspace.SoundF4S
+              TimeP1.TimePosition = (Value9)
+	end	  
+})
+
+CTab:AddButton({
+	Name = "Reset",
+	Callback = function()
+      		local Reset1 = game.Workspace.SoundF4S
+      Reset1.TimePosition = 0
+  	end    
+})
+
 -- Customs
 
 local CustomTab = Window:MakeTab({
@@ -147,7 +165,7 @@ local CustomTab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-CustomTab:AddParagraph("Debug","Get Audio from the exploit's Workspace. (Supports all audio formats.)")
+CustomTab:AddParagraph("Debug","Get Audio from the exploit's Workspace.")
 
 local Section = CustomTab:AddSection({
 	Name = "Play Audio on Client.Again"
@@ -155,7 +173,7 @@ local Section = CustomTab:AddSection({
 
 CustomTab:AddTextbox({
 	Name = "Name",
-	Default = "Wait.mp3",
+	Default = ".mp3",
 	TextDisappear = false,
 	Callback = function(Value5)
               local Custom1 = game.Workspace.SoundF4SC
@@ -167,7 +185,7 @@ CustomTab:AddButton({
 	Name = "Play",
 	Callback = function()
       		local Play2 = game.Workspace.SoundF4SC
-      Play2:Play()
+      Play2.Playing = true
   	end    
 })
 
@@ -175,7 +193,7 @@ CustomTab:AddButton({
 	Name = "Stop",
 	Callback = function()
       		local Stop2 = game.Workspace.SoundF4SC
-      Stop2:Stop()
+      Stop2.Playing = false
   	end    
 })
 
@@ -208,16 +226,34 @@ CustomTab:AddTextbox({
 	end	  
 })
 
--- Toggle
+CustomTab:AddTextbox({
+	Name = "Time Position",
+	Default = "0",
+	TextDisappear = false,
+	Callback = function(Value10)
+              local TimeP2 = game.Workspace.SoundF4SC
+              TimeP2.TimePosition = (Value10)
+	end	  
+})
+
+CustomTab:AddButton({
+	Name = "Reset",
+	Callback = function()
+      		local Reset2 = game.Workspace.SoundF4SC
+      Reset2.TimePosition = 0
+  	end    
+})
+
+-- Toggle \\
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "ToggleF4S"
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Parent = game.CoreGui         -- game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ResetOnSpawn = false
 
 local Toggle = Instance.new("TextButton")
 Toggle.Name = "Toggle"
-Toggle.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui").ToggleF4S
+Toggle.Parent = game.CoreGui.ToggleF4S
 Toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 Toggle.BackgroundTransparency = 0.5
 Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
